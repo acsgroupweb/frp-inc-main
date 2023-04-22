@@ -61,7 +61,7 @@ const Dots = styled.div`
   // transform: translateX(-50%);
 `;
 
-const Slider = ({ children }) => {
+export const Slider = ({ children }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeDot, setActiveDot] = useState(currentSlide);
