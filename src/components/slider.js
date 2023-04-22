@@ -1,164 +1,118 @@
-import React, { useState, useEffect } from "react"
-import Img from "gatsby-image"
-import { useStaticQuery, graphql } from "gatsby"
-import { useSwipeable } from "react-swipeable"
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+// import { TbArrowBigRightFilled, TbArrowBigLeftFilled } from "react-icons/tb"
+
+const SliderContainer = styled.div`
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: auto;
+  min-height: 700px;
+  margin: 0 auto 10vh auto;
+`;
+
+const Slide = styled.div`
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: ${(props) => (props.active ? "1" : "0")};
+  transition: opacity 1s ease;
+  margin: 0 auto;
+`;
+
+// const ArrowButton = styled.button`
+//   position: absolute;
+
+//   z-index: 1;
+//   transform: translateY(-50%);
+//   background: transparent;
+//   border: none;
+//   color: red;
+//   font-size: 24px;
+//   cursor: pointer;
+//   ${(props) => (props.left ? "left: 10px;" : "right: 10px;")}
+// `;
+
+const Dot = styled.div`
+  width: 30px;
+  height: 30px;
+  // border-radius: 50%;
+  margin: 0 6px;
+  border: 1px solid red;
+background-color: ${(props) => (props.active ? "#ff0000" : "rgba(255, 255, 255, 0.1")};
+  cursor: pointer;
+  `;
+   
+
+const Dots = styled.div`
+  position: absolute;
+  display: flex;
+  justifyContent: center;
+  bottom: ;
+  width: 300px;
+  left: 45%;
+  right: 50%;
+  margin: 0 auto;
+  margin-top:-50px;
+  cursor: pointer;
+  // transform: translateX(-50%);
+`;
 
 const Slider = ({ children }) => {
-  const [slideIndex, setSlideIndex] = useState(1)
-  useEffect(() => {})
-  const data = useStaticQuery(graphql`
-    {
-      slider: allMarkdownRemark(
-        filter: { frontmatter: { layout: { eq: "home-slider" } } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              sliderImages {
-                smallImage: image {
-                  childImageSharp {
-                    # Specify a fixed image and fragment.
-                    # The default width is 400 pixels
-                    fluid(maxWidth: 500, maxHeight: 240, quality: 50) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
-                largeImage: image {
-                  childImageSharp {
-                    # Specify a fixed image and fragment.
-                    # The default width is 400 pixels
-                    fluid(maxWidth: 2500, maxHeight: 1200, quality: 50) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
-                credit
-              }
-            }
-            html
-          }
-        }
-      }
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [activeDot, setActiveDot] = useState(currentSlide);
+
+  const goToSlide = (slideIndex) => {
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentSlide(slideIndex);
+      setTimeout(() => setIsTransitioning(false), 1000);
     }
-  `)
-
-  //console.log(data)
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => calculateSliderIndex(1),
-    onSwipedRight: () => calculateSliderIndex(-1),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-    trackTouch: true,
-  })
-
-  const calculateSliderIndex = n => {
-    var newSlideIndex = slideIndex + n
-    if (newSlideIndex > images.length) {
-      setSlideIndex(1)
-    } else if (newSlideIndex < 1) {
-      setSlideIndex(images.length)
-    } else {
-      setSlideIndex(newSlideIndex)
-    }
-  }
-
-  var images = data.slider.edges[0].node.frontmatter.sliderImages
-
-  //console.log(images)
+  };
 
   useEffect(() => {
-    const calculateSliderIndex1 = n => {
-      var newSlideIndex = slideIndex + n
-      //console.log(newSlideIndex)
-
-      if (newSlideIndex > images.length) {
-        setSlideIndex(1)
-      } else if (newSlideIndex < 1) {
-        setSlideIndex(images.length)
-      } else {
-        setSlideIndex(newSlideIndex)
+    const interval = setInterval(() => {
+      if (!isTransitioning) {
+        setIsTransitioning(true);
+        setCurrentSlide((prevSlide) => {
+          const nextSlide = (prevSlide + 1) % children.length;
+          setTimeout(() => setIsTransitioning(false), 1000);
+          return nextSlide;
+        });
       }
-    }
-    const timeout = setTimeout(() => {
-      calculateSliderIndex1(1)
-    }, 6000)
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [children.length, isTransitioning]);
 
-    return () => clearTimeout(timeout)
-  }, [slideIndex, images])
+  useEffect(() => {
+    setActiveDot(currentSlide);
+  }, [currentSlide]);
 
-  //  console.log(images)
-  var sliderImagesMarkUp = images.map((currentItem, index) => {
-    const sources = [
-      currentItem.smallImage.childImageSharp.fluid,
-      {
-        ...currentItem.largeImage.childImageSharp.fluid,
-        media: `(min-width: 500px)`,
-      },
-    ]
-    return (
-      <div
-        className="slide fade"
-        key={"slider-" + index}
-        style={
-          index + 1 === slideIndex ? { display: "block" } : { display: "none" }
-        }
-      >
-        <div className="slider-text-container">
-          <span className="slider-main-text">Structural Engineering</span>
-          <div
-            className="slider-secondary-text"
-            dangerouslySetInnerHTML={{ __html: data.slider.edges[0].node.html }}
-          />
-        </div>
-        <Img fluid={sources} alt={"Slider " + index} />
-        {currentItem.credit && (
-          <div className="credit-gray">{currentItem.credit}</div>
-        )}
-      </div>
-    )
-  })
-
-  var boxImagesMarkUp = images.map((currentItem, index) => {
-    return (
-      <span
-        className={
-          (index + 1 === slideIndex ? "box active" : "box") +
-          " item" +
-          (index + 1)
-        }
-        key={"box-" + index}
-        onClick={() => {
-          setSlideIndex(index + 1)
-        }}
-        role="button"
-        aria-label={"Slider Button" + (index + 1)}
-        tabIndex={index}
-        onKeyDown={() => {
-          setSlideIndex(index + 1)
-        }}
-      ></span>
-    )
-  })
   return (
-    <div className="slider-container" {...handlers}>
-      {sliderImagesMarkUp}
-      {/* <MoveLeftButton
-        onClick={() => {
-          calculateSliderIndex(-1)
-        }}
-      />
-      <MoveRightButton
-        onClick={() => {
-          calculateSliderIndex(1)
-        }}
-      /> */}
-      <div className="box-container">
-        <div className="box-wrapper">{boxImagesMarkUp}</div>
-      </div>
-    </div>
-  )
-}
+    <SliderContainer>
+      {children.map((child, index) => (
+        <Slide key={index} active={index === currentSlide}>
+          {child}
+          <Dots>
+            
+        {children.map((child, index) => (
+          <Dot key={index} active={index === activeDot} onClick={() => goToSlide(index)} />
+        ))}
+      </Dots>
+      {/* <ArrowButton left onClick={() => goToSlide((currentSlide - 1 + children.length) % children.length)}>
+      <TbArrowBigLeftFilled />
+      </ArrowButton> */}
+      {/* <ArrowButton right onClick={() => goToSlide((currentSlide + 1) % children.length)}>
+      <TbArrowBigRightFilled />
+      </ArrowButton> */}
+        </Slide>
+      ))}
+    </SliderContainer>
+  );
+};
 
-export default Slider
+export default Slider;

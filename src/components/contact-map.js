@@ -21,13 +21,15 @@ class ContactMap extends Component {
       this.props.options
     )
     this.addMarker(map)
+    console.log(process.env.GATSBY_GOOGLE_MAPS_API_KEY);
+
   }
 
   addMarker(map) {
     //const bounds = new window.google.maps.LatLngBounds()
     this.state.locations.map((location, i) => {
       const contentString =
-        '<div class="contact-info-window">' +
+        '<div className="contact-info-window">' +
         "<h1>FRP INC</h1>" +
         "<p>3535 East 96th Street, Suite 126 Indianapolis, IN 46240</p>" +
         '<a target="_blank" href="https://maps.google.com/?q=' +
@@ -80,7 +82,7 @@ class ContactMap extends Component {
   }
 
   render() {
-    return <div className="contact-map" id={this.props.id} />
+    return <div className="contact-map" id={this.props.id} style={{display:'block', width:'100vw', height:'100vh'}} />
   }
 }
 

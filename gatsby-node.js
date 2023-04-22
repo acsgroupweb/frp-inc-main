@@ -1,193 +1,207 @@
-const path = require(`path`)
+const path = require("path")
 const { createFilePath } = require(`gatsby-source-filesystem`)
+
+exports.createPages = async ({ actions, graphql, reporter }) => {
+
+  const { createPage } = actions
+
+  const blogList = path.resolve(`./src/templates/blog-list.js`)
+
+  const result = await graphql(`
+  {
+    allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+      edges {
+        node {
+          id
+          frontmatter {
+            slug
+            template
+            title
+            category
+            tags
+          }
+        }
+      }
+    }
+  }
+`)
+
+
+  // Handle errors
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
+
+
+      // Create team pages
+const team = result.data.allMarkdownRemark.edges
+team.forEach((team) => {
+  createPage({
+    path: team.node.frontmatter.slug,
+    component: path.resolve(`src/templates/team.js`),
+    context: {
+      id: team.node.id,
+    },
+  })
+})
+
+
+// const rssTemplate = path.resolve(`src/pages/rss.xml.js`);
+
+//   createPage({
+//     path: "/rss.xml",
+//     component: rssTemplate,
+//     context: {
+//       // Data passed to context is available in page queries as GraphQL variables.
+//     },
+//   });
+
+
+
+
+
+
+
+
+
+
+
+
+  // Create markdown pages
+  const posts = result.data.allMarkdownRemark.edges
+  let blogPostsCount = 0
+  const category = new Set()
+  const tags = new Set()
+
+  posts.forEach((post, index) => {
+    const id = post.node.id
+    const previous = index === posts.length - 1 ? null : posts[index + 1].node
+    const next = index === 0 ? null : posts[index - 1].node
+
+    createPage({
+      path: post.node.frontmatter.slug,
+      component: path.resolve(
+        `src/templates/${String(post.node.frontmatter.template)}.js`
+      ),
+      // additional data can be passed via context
+      context: {
+        id,
+        previous,
+        next,
+      },
+    })
+
+
+    // Count blog posts.
+    if (post.node.frontmatter.template === "blog-post") {
+      blogPostsCount++
+    }
+
+// Collect categories and tags
+if (post.node.frontmatter.category) {
+  category.add(post.node.frontmatter.category)
+}
+if (post.node.frontmatter.tags) {
+  post.node.frontmatter.tags.forEach((tag) => tags.add(tag))
+}
+})
+
+// Create blog-list pages
+const postsPerPage = 6
+const numPages = Math.ceil(blogPostsCount / postsPerPage)
+
+Array.from({ length: numPages }).forEach((_, i) => {
+  createPage({
+    path: i === 0 ? `/archive/` : `/archive/${i + 1}`,
+    component: blogList,
+    context: {
+      limit: postsPerPage,
+      skip: i * postsPerPage,
+      numPages,
+      currentPage: i + 1,
+    },
+  })
+})
+
+// Create category pages
+const categoryTemplate = path.resolve(`./src/templates/category.js`)
+category.forEach((category) => {
+  createPage({
+    path: `/category/${category}`,
+    component: categoryTemplate,
+    context: {
+      category,
+    },
+  })
+
+  // Create category index page
+  const posts = result.data.allMarkdownRemark.edges.filter(
+    ({ node }) => node.frontmatter.category === category
+  )
+
+  if (posts.length > 0) {
+    createPage({
+      path: `/category/${category}/`,
+      component: categoryTemplate,
+      context: {
+        category,
+        posts,
+        tags,
+      },
+    })
+  } else {
+    createPage({
+      path: `/category/${category}/`,
+      component: categoryTemplate,
+      context: {
+        category,
+        noPosts: true,
+      },
+    })
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+  // Create tag pages
+  const tagTemplate = path.resolve(`./src/templates/tag-template.js`)
+  tags.forEach((tag) => {
+    createPage({
+      path: `/tag/${tag}`,
+      component: tagTemplate,
+      context: {
+        tag,
+      },
+    })
+  })
+}
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `` })
+    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    const slugWithoutPrefix = slug.replace(/^\/posts/, '')
     createNodeField({
       node,
       name: `slug`,
-      value: slug,
+      value: slugWithoutPrefix,
+    })
+
+    // Add document type field
+    createNodeField({
+      node,
+      name: `type`,
+      value: getNode(node.parent).sourceInstanceName,
     })
   }
 }
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-  const result = await graphql(`
-    query {
-      allOtherItems: allMarkdownRemark(
-        filter: { frontmatter: { layout: { in: ["project", "team"] } } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              layout
-            }
-            fields {
-              slug
-            }
-          }
-        }
-      }
-
-      jobItems: allMarkdownRemark(
-        filter: { frontmatter: { layout: { eq: "jobs" } } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              layout
-            }
-            fields {
-              slug
-            }
-          }
-        }
-      }
-
-      newsItems: allMarkdownRemark(
-        filter: { frontmatter: { layout: { eq: "news" } } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              layout
-            }
-            fields {
-              slug
-            }
-          }
-        }
-      }
-
-      newsCategories: allMarkdownRemark(
-        limit: 2000
-        filter: { frontmatter: { layout: { eq: "news" } } }
-      ) {
-        group(field: frontmatter___category) {
-          fieldValue
-          totalCount
-          nodes {
-            fields {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  result.data.allOtherItems.edges.forEach(({ node }) => {
-    createPage({
-      path: node.fields.slug,
-      component: path.resolve(
-        `./src/templates/${node.frontmatter.layout}-single.js`
-      ),
-      context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
-        slug: node.fields.slug,
-      },
-    })
-  })
-
-  result.data.jobItems.edges.forEach(({ node }) => {
-    createPage({
-      path: node.fields.slug,
-      component: path.resolve(
-        `./src/templates/${node.frontmatter.layout}-single.js`
-      ),
-      context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
-        slug: node.fields.slug,
-      },
-    })
-  })
-
-  result.data.newsItems.edges.forEach(({ node }) => {
-    createPage({
-      path: node.fields.slug,
-      component: path.resolve(
-        `./src/templates/${node.frontmatter.layout}-single.js`
-      ),
-      context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
-        slug: node.fields.slug,
-      },
-    })
-  })
-
-  // Extract category from query
-  const categories = result.data.newsCategories.group
-  //Make category pages
-  categories.forEach(category => {
-    const categoryPosts = category.nodes
-    const categoryPostsPerPage = 6
-    const numCategoryPages = Math.ceil(
-      categoryPosts.length / categoryPostsPerPage
-    )
-    Array.from({ length: numCategoryPages }).forEach((_, i) => {
-      createPage({
-        path:
-          i === 0
-            ? `/news/category/${category.fieldValue}`
-            : `/news/category/${category.fieldValue}/${i + 1}`,
-        component: path.resolve("./src/templates/news-category-archive.js"),
-        context: {
-          limit: categoryPostsPerPage,
-          skip: i * categoryPostsPerPage,
-          numCategoryPages,
-          currentPage: i + 1,
-          category: category.fieldValue,
-        },
-      })
-    })
-    // createPage({
-    //   path: `/news/category/${category.fieldValue}/`,
-    //   component: path.resolve(`./src/templates/news-category-archive.js`),
-    //   context: {
-    //     category: category.fieldValue,
-    //   },
-    // })
-  })
-
-  const posts = result.data.newsItems.edges
-  const postsPerPage = 6
-  const numPages = Math.ceil(posts.length / postsPerPage)
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/news` : `/news/${i + 1}`,
-      component: path.resolve("./src/templates/news-list.js"),
-      context: {
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        numPages,
-        currentPage: i + 1,
-      },
-    })
-  })
-}
-
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-  const typeDefs = `
-    type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-    }
-    type Frontmatter {
-      subTitle: String
-      sliderImages: [MarkdownRemarkFrontmatterSliderImages]
-    }
-
-    type MarkdownRemarkFrontmatterSliderImages {
-      
-      credit: String
-    }
-  `
-  createTypes(typeDefs)
-}

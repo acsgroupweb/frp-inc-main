@@ -1,7 +1,7 @@
 ---
 layout: news
 title: LAWSON ELSER JOINS FRP!
-date: 2023-02-10T02:49:19.765Z
+date: 2023-02-21T02:49:19.765Z
 newsItemImage: /static/images/lawson-elser-website-post-image.jpg
 category: Company
 ---

@@ -1,17 +1,67 @@
-import "fontsource-spartan/600-normal.css"
-import "fontsource-spartan/500-normal.css"
-import "fontsource-lato/300-normal.css"
-import "fontsource-lato/400-normal.css"
-import "fontsource-lato/700-normal.css"
-import "./src/styles/main.scss"
+// import * as React from "react"
+// import { StoreProvider } from "./src/context/store-context"
 
-// import React from "react"
-// const defaultTheme = "light"
-// export const ThemeContext = React.createContext(defaultTheme)
-// export const wrapRootElement = ({ element }) => {
-//   return (
-//     <ThemeContext.Provider value={defaultTheme}>
-//       {element}
-//     </ThemeContext.Provider>
-//   )
+
+
+// export const wrapRootElement = ({ element }) => (
+
+  
+//   <StoreProvider>{element}</StoreProvider>
+// )
+
+export const onInitialClientRender = () => {
+  setTimeout(function() {
+      document.getElementById("___loader").style.display = "none"
+  }, 1000)
+}
+
+
+
+export const onServiceWorkerUpdateReady = () => {
+  const answer = window.confirm(
+    `This website has been updated since your last visit. ` +
+      `Reload to display the latest version?`
+  )
+
+  if (answer === true) {
+    window.location.reload()
+  }
+}
+
+
+
+// export const onServiceWorkerUpdateFound = () => {
+//   const showNotification = () => {
+//     Notification.requestPermission(result => {
+//         if (result === 'granted') {
+//             navigator.serviceWorker.ready.then(registration => {
+//                 registration.showNotification('Update', {
+//                     body: 'New content is available!',
+//                     icon: 'static/icons/manifest-icon-512.png',
+//                     vibrate: [200, 100, 200, 100, 200, 100, 400],
+//                     tag: 'request',
+//                     actions: [ // you can customize these actions as you like
+//                         {
+//                             action: window.location.reload(), // you should define this
+//                             title: 'update'
+//                         },
+//                         {
+//                             action: window.confirm(
+//                               `This website has been updated since your last visit. ` +
+//                                 `Reload to display the latest version?`
+//                             ), // you should define this
+//                             title: 'ignore'
+//                         }
+//                     ]
+//                 })
+//             })
+//         }
+//     })
+//   }
+
+//   showNotification()
 // }
+
+
+
+

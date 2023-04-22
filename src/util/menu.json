@@ -1,0 +1,28 @@
+{
+  "menuItems": [
+    {
+      "menutitle": "News",
+      "url": "/category"
+    },
+    {
+      "menutitle": "Projects",
+      "url": "/tags"
+    },
+    {
+      "menutitle": "About",
+      "url": "/about"
+    },
+    {
+      "menutitle": "Team",
+      "url": "/team"
+    },
+    {
+      "menutitle": "Careers",
+      "url": "/careers"
+    },
+    {
+      "menutitle": "Contact",
+      "url": "/contact"
+    }
+  ]
+}

@@ -251,9 +251,10 @@ class Map extends Component {
 
     var src =
       // "https://github.com/venkateshcp/frpincstatic/blob/56dfc6d28a1d78fb7baf222b90229988407421f1/frp.kmz?raw=true"
-      // "https://github.com/completeweb-site/base/blob/decap/static/content/map/frp.kmz?raw=true"
-      "https://github.com/acsgroupweb/frp-inc-main/blob/97c5882e0718ddda5c835e9f73aad422a0617d5f/static/content/map/frp.kmz"
+      "https://github.com/completeweb-site/base/blob/decap/static/content/map/frp.kmz?raw=true"
+      
     //this.addMarker(map)
+
 
     new window.google.maps.KmlLayer(src, {
       //suppressInfoWindows: true,
@@ -351,8 +352,8 @@ class Map extends Component {
 
   render() {
     return (
-      <div className="map-section" ref={this.mapRef}>
-        <div className="section-title">
+      <div className="map-section" ref={this.mapRef} style={{background:'var(--theme-ui-colors-background)'}}>
+        <div className="section-title experience">
           <span className="top-text">
             E<span className="half-color">x</span>perience
           </span>
