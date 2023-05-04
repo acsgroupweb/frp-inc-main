@@ -538,7 +538,7 @@ body.homepage .resp-sharing-button__icon svg{height:5vh;width:5vw}
 .box-shadow{box-shadow:0 0 10px rgba(0,0,0,.5)}
 .commentbox{background:#ccc;border:0 solid red;border-radius:12px;color:var(--primary);max-width:80vw;min-width:50vw}
 .contact-form input,.searchform input,textarea{background:#333;border:1px solid #666;border-radius:8px;color:#fff;font-size:18px;font-weight:600;margin:0;max-width:100%;opacity:.8;padding:1vh 2vw;width:100%}
-.contact-form p{margin-bottom:0}
+.contact-form p{margin-bottom:0;}
 .countdown{border:0 solid #ffc0cb;position:relative}
 .countdown span:before{content:" ";font-size:2rem;line-height:.1em;margin-right:.25em;position:absolute;right:0;text-align:center;top:-1.5rem;vertical-align:-.4em;width:100%}
 .drop-shadow{filter:drop-shadow(0 0 10px rgba(0,0,0,.5))}
@@ -572,7 +572,7 @@ body.homepage .resp-sharing-button__icon svg{height:5vh;width:5vw}
 
 
 
-.signup{align-items:center;align-self:center;display:flex;flex-direction:column;gap:10px;justify-content:center;overflow:hidden; border-radius:8px;width:100%}
+.signup{align-items:center;align-self:center;display:flex;flex-direction:column;gap:10px;justify-content:center; border-radius:8px !important;width:100%}
 
 
 

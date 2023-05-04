@@ -54,9 +54,9 @@ const NewsletterPage = () => (
 
 
             
-              <div className="txtshadow" style={{fontSize:'clamp(1.4rem, 1.5vw, 1.5rem)', textAlign:'center', marginTop:'10px'}}><strong>Get All The Latest Minutes</strong></div>
+              <div className="txtshadow" style={{fontSize:'clamp(1.4rem, 1.5vw, 1.5rem)', textAlign:'center', marginTop:'10px'}}><strong>Follow FRP</strong></div>
              
-              <span className="txtshadow" style={{fontSize:'95%'}}>Get notified when NEW Minutes drop </span>
+              <span className="txtshadow" style={{fontSize:'95%'}}>Get All The Latest Updates</span>
 
              <div className="signbox" style={{display:'flex', gap:'10px', justifyContent:'center', alignItems:'center', alignSelf:'center',}}>
              
@@ -84,7 +84,7 @@ const NewsletterPage = () => (
 
 
             <div style={{fontSize: '', padding: '0px 3%', margin:'30px 0 10px 0', textAlign: 'center', color:'#fff'}}>
-            <Link to="/privacy/" className="" style={{textAlign: 'center', padding: '15px',  textDecoration: 'underline', border:'0px solid yellow'}}>privacy policy (NO SPAM!)</Link>
+            <Link to="/privacy/" className="" style={{textAlign: 'center', padding: '15px',  textDecoration: 'underline', border:'0px solid yellow'}}>privacy policy (no spam)</Link>
            
             </div>
 </form>
