@@ -34,7 +34,8 @@ import SignUp from "../components/newssign"
 
 const Layout = ({ children }) => {
 
-
+  // const [loggedIn, setLoggedIn] = useState(false);
+  // useNetlifyIdentity(setLoggedIn);
 
 
 const { companyname } = useSiteMetadata()
@@ -193,6 +194,7 @@ const fontUrl = "https://fonts.googleapis.com/css?family=" + font1.replace(/\s+/
     #menu,.font,.full-width-image:after,.h1,.h2,.h3,.h4,.header .menu-icon:before,.horizontal-scroll:before,.intro:after,.intro:before,.scrolldown,h1,h2,h3,h4,input.special{font-family:${font1}, sans-serif}
     ${userStyles.userStyles}
   `}</style>
+    <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </Helmet>
 
 
@@ -342,7 +344,7 @@ const fontUrl = "https://fonts.googleapis.com/css?family=" + font1.replace(/\s+/
 <div id="missioncontrol" className="missioncontrol sitecontrols" style={{display:'flex', justifyContent:'space-around', fontSize:'clamp(.8rem, 2.3vw, 2.5rem)', gap:'3vw', textAlign:'center', maxHeight:'', alignItems:'center', paddingTop:'5px'}}>
 
 {showSearch ? (
-<div>
+<div className="searchIcon">
    <Link aria-label="Search UrbanFetish" to="/search/" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:'0px', textAlign:'center'}}>
     <SearchIcon style={{height:'30px'}} />
     <span className="themetext">search</span>
