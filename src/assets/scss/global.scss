@@ -748,6 +748,7 @@ to{opacity:0;z-index:-3}
     font-size: clamp(.7rem,1vw,1rem);
     text-shadow:none ;
     text-align:center;
+    text-transform: lowercase;
 }
 .themer:hover, .swipescroll:hover{color:var(--theme-ui-colors-siteColor) ; }
 
