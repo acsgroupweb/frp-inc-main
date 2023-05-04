@@ -11,7 +11,7 @@ const netlifyCmsPaths = {
   },
 }
 
-const settings = require("./src/util/site.json")
+const settings = require("./static/data/site.json")
 
 module.exports = {
   flags: {},
@@ -170,14 +170,22 @@ module.exports = {
         name: 'images',
       },
     },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/content/`,
+        name: `team`,
+        path: `${__dirname}/static/content/team/`,
+      },
+    },
+
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/static/content/`,
         name: `content`,
       },
     },
-    
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -219,7 +227,7 @@ module.exports = {
 
 
           {
-            resolve: `gatsby-plugin-feed`,
+            resolve: 'gatsby-plugin-feed',
             options: {
               query: `
                 {
@@ -228,6 +236,7 @@ module.exports = {
                       title
                       description
                       siteUrl
+                      site_url: siteUrl
                     }
                   }
                 }
@@ -235,82 +244,73 @@ module.exports = {
               feeds: [
                 {
                   serialize: ({ query: { site, allMarkdownRemark } }) => {
-                    return allMarkdownRemark.edges.map(edge => {
-                      const postUrl = site.siteMetadata.siteUrl + edge.node.fields.slug;
-                      const imageUrl = edge.node.frontmatter.featuredImage
-                        ? site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.publicURL
+                    return allMarkdownRemark.nodes.map(node => {
+                      const imageUrl = node.frontmatter.featuredImage
+                        ? site.siteMetadata.siteUrl + node.frontmatter.featuredImage.childImageSharp.fixed.src
                         : null;
-                      return {
-                        title: edge.node.frontmatter.title,
-                        description: edge.node.excerpt,
-                        date: edge.node.frontmatter.date,
-                        url: postUrl,
-                        guid: postUrl,
+          
+                      const mediaContent = imageUrl
+                        ? {
+                            "media:content": {
+                              _attr: {
+                                url: imageUrl,
+                                medium: "image",
+                              },
+                            },
+                          }
+                        : null;
+          
+                      return Object.assign({}, node.frontmatter, {
+                        description: node.excerpt,
+                        date: node.frontmatter.date,
+                        url: site.siteMetadata.siteUrl + node.fields.slug,
+                        guid: site.siteMetadata.siteUrl + node.fields.slug,
                         custom_elements: [
-                          { "content:encoded": edge.node.html },
-                          imageUrl
-  ? {
-      [`media:content`]: {
-        _attr: {
-          url: imageUrl,
-          type: "image/jpeg",
-          width: 500,
-          height: 500,
-          xmlns: "http://search.yahoo.com/mrss/"
-        }
-      }
-    }
-  : null
-
-                        ]
-                      };
+                          { "content:encoded": node.html },
+                          mediaContent,
+                          {
+                            _attr: {
+                              "xmlns:media": "http://search.yahoo.com/mrss/",
+                            },
+                          },
+                        ].filter(Boolean),
+                      });
                     });
                   },
-          
                   query: `
                   {
-                    allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
-                      edges {
-                        node {
-                          excerpt
-                          html
-                          fields {
-                            slug
-                          }
-                          frontmatter {
-                            title
-                            date
-                            slug
-                            featuredImage {
-                              publicURL
+                    allMarkdownRemark(
+                      sort: { fields: [frontmatter___date], order: DESC }
+                      filter: { frontmatter: { excludeFromRSS: { ne: true } } }
+                    ) {
+                      nodes {
+                        excerpt
+                        html
+                        fields {
+                          slug
+                        }
+                        frontmatter {
+                          title
+                          date
+                          featuredImage {
+                            childImageSharp {
+                              fixed(width: 800) {
+                                src
+                              }
                             }
                           }
                         }
                       }
                     }
                   }
-                  
                   `,
-                  output: "/rss.xml",
-                  title: "My RSS Feed",
-                  // ...
+                  output: '/rss.xml',
+                  title: 'Feed Title',
                 },
               ],
             },
           },
-
-          {
-            resolve: `gatsby-source-rss-feed`,
-            options: {
-              url: `https://urbanfetish.com/public/rss.xml`,
-              name: `UrbanFetish`,
-              parserOption: {
-                customFields: {
-                  item: ['media:content', 'description'],
-                },
-              },
-            },
-          },
+          
           
           
           
@@ -345,7 +345,7 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`,
         enableIdentityWidget: true,
         publicPath: `admin`,
-        htmlTitle: `Complete Web CMS`,
+        htmlTitle: `FRP CMS`,
         htmlFavicon: `static/assets/logo.svg`,
         includeRobots: false,
         logo_url: 'https://memegenes.com/assets/logo.svg'
@@ -417,7 +417,7 @@ module.exports = {
       options: {
         name: settings.meta.companyname,
         short_name: settings.meta.companyname,
-        start_url: `/?user_mode=app`,
+        start_url: `/admin?user_mode=app`,
         description: settings.meta.companyname,
         background_color: `#111`,
         lang: `en`,

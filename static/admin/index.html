@@ -11,8 +11,25 @@
   <!-- Include the script that builds the page and powers Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 
+
+
+
   <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Register 'logout' event listener
+    netlifyIdentity.on('logout', () => {
+      // Refresh the parent window
+      window.top.location.reload();
+    });
+
+    // Register 'login' event listener
+    netlifyIdentity.on('login', () => {
+      // Replace '/your-page-url' with the URL of the page you want to redirect to
+      window.top.location.href = '/pirate';
+    });
+  });
+</script>
 
 
   <link href="./mobile-overrides.css" rel="stylesheet" />

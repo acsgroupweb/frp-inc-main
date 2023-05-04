@@ -4,7 +4,7 @@ import useSiteMetadata from "../hooks/SiteMetadata"
 // import Theme from "../components/theme"
 import Consent from "./Consent"
 // import Install from "./install-footer"
-import Icons from "../util/socialmedia.json"
+import Icons from "../../static/data/socialmedia.json"
 import {
   RiFacebookBoxFill,
   RiTwitterFill,
@@ -246,7 +246,7 @@ export default function Footer() {
 <br />
 <br /> */}
 
-<a href="https://completeweb.site" rel="noreferrer">Web App by Complete Web</a> &nbsp; | &nbsp; <a href={speedIt} rel="noreferrer">Site Report Card</a>
+{/* <a href="https://completeweb.site" rel="noreferrer">Web App by Complete Web</a> &nbsp; | &nbsp; <a href={speedIt} rel="noreferrer">Site Report Card</a> */}
 </div>
 <br />
 <br />

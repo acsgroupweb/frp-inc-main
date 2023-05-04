@@ -1,7 +1,7 @@
 backend:
   # name: test-repo
   name: git-gateway
-  branch: main
+  branch: live
   commit_messages:
     create: "Create {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -11,7 +11,7 @@ backend:
 
 # Uncomment local_backend when you need to develop in your local
 # local_backend: true # run npx netlify-cms-proxy-server for local testing
-logo_url: https:///assets/logo.svg
+logo_url: ../assets/logo.svg
 media_folder: "static/assets"
 public_folder: "/assets"
 
@@ -21,7 +21,7 @@ collections:
     label_singular: "Post" # Used in the UI, ie: "New Post"
     description: >
       Create awesome stuff here.
-    folder: "src/content/posts"
+    folder: "static/content/posts"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{title}} — {{year}}/{{month}}/{{day}}"
     create: true # Allow users to create new documents in this collection
@@ -126,7 +126,7 @@ collections:
     files:
       - label: "Home"
         name: "home"
-        file: "src/content/pages/index.md"
+        file: "static/content/pages/index.md"
         fields:
           - {
               label: "Template",
@@ -216,7 +216,7 @@ collections:
                 
       - label: "About"
         name: "about"
-        file: "src/content/pages/about.md"
+        file: "static/content/pages/about.md"
         fields:
           - {
               label: "Template",
@@ -229,7 +229,7 @@ collections:
           - { label: "Body", name: "body", widget: "markdown" }
       - label: "Contact"
         name: "contact"
-        file: "src/content/pages/contact.md"
+        file: "static/content/pages/contact.md"
         fields:
           - {
               label: "Template",
@@ -250,7 +250,7 @@ collections:
     files:
       - name: general
         label: General
-        file: "src/util/site.json"
+        file: "static/data/site.json"
         fields:
           - label: meta
             name: meta
@@ -403,7 +403,7 @@ collections:
             hint: "Add your tracking ID, should look like UA-XXXXXXXXX-X or G-XXXXXXXXXX"
       - label: Social Icons
         name: socialIcons
-        file: "src/util/socialmedia.json"
+        file: "static/data/socialmedia.json"
         fields:
           - label: Social Icons
             name: socialIcons
@@ -446,7 +446,7 @@ collections:
     files:
       - label: "Default Theme"
         name: "themescolors"
-        file: "src/util/default-colors.json"
+        file: "static/data/default-colors.json"
         fields:
           - label: "Primary Color"
             name: "siteColor"
@@ -455,7 +455,7 @@ collections:
             allowInput: true
       - label: "Dark Theme"
         name: "darkthemescolors"
-        file: "src/util/dark-theme-colors.json"
+        file: "static/data/dark-theme-colors.json"
         fields:
           - label: "Primary Color"
             name: "siteColor"

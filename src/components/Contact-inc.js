@@ -6,7 +6,7 @@ import React from 'react'
 const Contact = class extends React.Component {
   render() {
     return (
-      <div className="wrapper" style={{padding:'0 10%', maxWidth:'900px', margin:'0 auto' }}>
+      <div className="wrapper" style={{padding:'0 10%', maxWidth:'900px', margin:'0 auto',}}>
       <form
         className="contact-form specialfont2"
         action="/thanks"
@@ -14,6 +14,7 @@ const Contact = class extends React.Component {
         method="POST"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
+        style={{borderRadius:'8px'}}
       >
         <input type="hidden" name="form-name" value="contact" />
         <p>

@@ -39,7 +39,7 @@ const Consent = () => (
     <div style={{color:'inherit', padding:'1rem .5rem', fontSize:'clamp(.6rem, 1.8vw, 3rem)%', textAlign:'center', display:'grid', placeContent:'center', justifyContent:'center', maxWidth:'350px', margin:'0 auto'}}>
     We use cookies to analyze traffic, remember preferences, and optimize your experience.{" "}<br />
     <span style={{ fontSize: "85%", color:'inherit', textDecoration:'underline' }}>
-   <Link state={{modal: true}} className="donotsell" to="/privacy#ccpa">Do Not Sell My Personal Information</Link> | <Link state={{modal: true}} to="/cookie-policy/" style={{color:'#fff',}}>Cookie Policy</Link>
+   <Link className="donotsell" to="/privacy#ccpa">Do Not Sell My Personal Information</Link> | <Link to="/cookie-policy/" style={{color:'#fff',}}>Cookie Policy</Link>
     </span>
     </div>
     

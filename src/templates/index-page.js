@@ -660,7 +660,7 @@ style={{height:'auto', width:'100vw', maxHeight:'100vh', position:'relative', zI
   </article>
   <div className="section-title structuraleng">
         <span className="top-text">
-            Structural <span className="half-color">E</span>ngineering
+            Structural E<span className="half-color">n</span>gineering
         </span>
       <span className="horizontal-line"></span>
 </div>
@@ -681,7 +681,7 @@ Founded in 1944 and located in Indianapolis, Indiana, FRP has consistently been 
 
       <div className="section-title structuraleng" style={{position:'absolute', zIndex:'2', top:'6vh', display:'flex', justifyContent:'center', width:'100vw', margin:'0 auto', textAlign:'center', fontSize: 'clamp(2rem, 2.7vw, 4.2rem)', textShadow: '1px 2px 0px #aaa',}}>
         <span className="top-text" style={{ margin:'0 auto', textAlign:'center'}}>
-            Structural <span className="half-color">E</span>ngineering
+            Structural E<span className="half-color">n</span>gineering
         </span>
       <span className="horizontal-line"></span>
 </div>
@@ -695,7 +695,7 @@ Founded in 1944 and located in Indianapolis, Indiana, FRP has consistently been 
   <img src="/assets/Slider3.webp" alt="slide 3" style={{margin:'0 auto'}} />
 
 </Slider>
-<div style={{position:'relative', margin:'-18vh auto 1vh auto', maxWidth:'', }}><NewSignUp /></div>
+<div className="signup" style={{position:'relative', margin:'-18vh auto 1vh auto', }}><NewSignUp /></div>
 
 </section>
 )}
@@ -818,7 +818,7 @@ Founded in 1944 and located in Indianapolis, Indiana, FRP has consistently been 
   
   <div className="section-title featuredProj"><span className="top-text">Featured Pr<span className="half-color">o</span>jects</span><span className="horizontal-line"></span></div>
 
-<div className="contentpanel grid-container">
+<div className="contentpanel1 grid-container">
 
 <div className="sliderSpacer" style={{height:'', paddingTop:'', display:''}}></div>
 <BlogListHome data={posts} />
@@ -901,7 +901,7 @@ Founded in 1944 and located in Indianapolis, Indiana, FRP has consistently been 
 
 <div className="section-title team">
         <span className="top-text">
-            Te<span className="half-color">a</span>m
+            Tea<span className="half-color">m</span>
         </span>
       <span className="horizontal-line"></span>
 </div>
