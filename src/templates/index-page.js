@@ -695,7 +695,13 @@ Founded in 1944 and located in Indianapolis, Indiana, FRP has consistently been 
   <img src="/assets/Slider3.webp" alt="slide 3" style={{margin:'0 auto'}} />
 
 </Slider>
-<div className="signup" style={{position:'relative', margin:'-18vh auto 1vh auto', }}><NewSignUp /></div>
+<div className="signup" style={{position:'relative', margin:'-18vh auto 1vh auto', }}><NewSignUp />
+{showSocial ? (
+    <Social />
+  ) : (
+    ""
+  )}
+</div>
 
 </section>
 )}

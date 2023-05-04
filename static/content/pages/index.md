@@ -24,11 +24,11 @@ underlayImage:
 profText:
  <div className="" style="text-align:left;">FRP has long been known as a premiere structural engineering firm by architects, facility owners and contractors.
   Founded in 1944 and located in Indianapolis, Indiana, FRP has consistently been involved in significant structural engineering and architectural projects.</p>
-addressText: "1234 Main Street"
+addressText: "3535 East 96th Street, Suite 126 "
 portfolio:
   openText: ""
   closeText: ""
-addressText2: "Anywhere, Planet Earth"
+addressText2: "Indianapolis, IN 46240"
 skillsTitle: "Mad Skills Yo!"
 skillsText: ""
 cta:
