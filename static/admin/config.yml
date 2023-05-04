@@ -1,7 +1,7 @@
 backend:
   # name: test-repo
   name: git-gateway
-  branch: decap
+  branch: live
   commit_messages:
     create: "Create {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -24,10 +24,10 @@ collections:
   - name: "team"
     editor:
       preview: false
-    label: "Pirate Posts"
-    label_singular: "Pirate Post"
+    label: "Team Members"
+    label_singular: "Team Member"
     description: >
-      Pirate Posts - your content on Pirate
+      Add Team Members here
     folder: "static/content/team"
     create: true
     slug: "{{slug}}"
