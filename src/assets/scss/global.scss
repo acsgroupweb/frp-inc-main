@@ -669,7 +669,7 @@ a[href^="tel:"]:before {
 .splitRow{align-items:center;flex-direction:column}
 .squares>*{height:100vh;margin:0 0 45%}
 
-footer{background:linear-gradient(0deg,#111,#222,#000,#111);background-color:#111;background-size:300% 300%;bottom:0;color:#fff;display:flex;justify-content:center;margin:0 auto;opacity:.8;padding:.1rem 0;position:relative;z-index:2;width:100vw;}
+footer{background:linear-gradient(0deg,#111,#222,#000,#111);background-color:#111;background-size:300% 300%;bottom:0;color:#fff;display:flex;justify-content:center;margin:0 auto;opacity:.8;padding:1rem 0;position:relative;z-index:2;width:100vw;}
 input[type=checkbox]:checked~#secondMenu{transform:translateX(0)}
 input[type=checkbox]:checked~#sidebarMenu{transform:translateX(100%)}
 
@@ -874,7 +874,7 @@ ul li{display:inline-block}
   body .spacer{height:135px !important;}
   body.archivepage .spacer, body.homepage .spacer, body.tagpage .spacer, body.category .spacer, body.search .spacer{
     display:block;
-    height:220px !important;
+    height:120px !important;
   }
   
   .topmenu {gap:1vw ; padding:0 ;}

@@ -227,7 +227,7 @@ export default function Footer() {
         <div className="" style={{textAlign:'center', justifyContent:'center', display:'flex', flexDirection:'column', alignItems:'center', margin:'1rem 0'}}><span style={{fontSize:'120%'}}><strong>{companyname}</strong></span>
        <a href="https://www.google.com/maps?q=Fink+Roberts+&+Petrie+Inc+3535+East+96th+Street,+Suite+126+Indianapolis,+Indiana+46240"><span>3535 East 96th Street, Suite 126</span><br />
         <span>Indianapolis, IN 46240</span></a>
-        <span><a class="call" href="tel:+3178728400">+1(317) 872-8400</a></span>
+        <span><a className="call" href="tel:+3178728400">+1(317) 872-8400</a></span>
         <span>Fax +1(317) 876-2408</span>
         </div>
         

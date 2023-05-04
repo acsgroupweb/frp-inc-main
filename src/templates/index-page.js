@@ -668,7 +668,7 @@ style={{height:'auto', width:'100vw', maxHeight:'100vh', position:'relative', zI
 ) : (
   <section id="features" order="1" name="feature" className="print scroll-area1" style={{ display:'', top:'', height:'auto', maxHeight:'', margin:'0 auto', padding:'0 0 10px 0', position:'relative', background:'var(--theme-ui-colors-background)'}}>
 
-<div className="" style={{display:'', justifyContent:'center', position:'absolute', top:'20vh', left:'2%', right:'2%', zIndex:'3', width:'90%', maxWidth:'570px', margin:'0 auto', padding: '2vw 1%', maxHeight: '', fontSize: 'clamp(1rem, 1.5vw, 3.2rem)', textShadow: '0 2px 0 #000', color: '#fff', background: 'rgba(0,0,0,0.60)', backdropFilter: 'blur(12px)', borderRadius: '10px', textWrap: 'balance center', lineHeight:'250%', textAlign:'center' }}>
+<div className="" style={{display:'', justifyContent:'center', position:'absolute', top:'25%', left:'2%', right:'2%', zIndex:'3', width:'90%', maxWidth:'570px', margin:'0 auto', padding: '2vw 1%', maxHeight: '', fontSize: 'clamp(1rem, 1.5vw, 3.2rem)', textShadow: '0 2px 0 #000', color: '#fff', background: 'rgba(0,0,0,0.60)', backdropFilter: 'blur(12px)', borderRadius: '10px', textWrap: 'balance center', lineHeight:'250%', textAlign:'center' }}>
 FRP has long been known as a premiere structural engineering firm by architects, facility owners and contractors.
 <br />
 Founded in 1944 and located in Indianapolis, Indiana, FRP has consistently been involved in significant structural engineering and architectural projects.
@@ -695,7 +695,7 @@ Founded in 1944 and located in Indianapolis, Indiana, FRP has consistently been 
   <img src="/assets/Slider3.webp" alt="slide 3" style={{margin:'0 auto'}} />
 
 </Slider>
-<div className="signup" style={{position:'relative', margin:'-18vh auto 1vh auto', }}><NewSignUp />
+<div className="signup" style={{position:'relative', margin:'-18vh auto 1vh auto', padding:'0 3%' }}><NewSignUp />
 {showSocial ? (
     <Social />
   ) : (
