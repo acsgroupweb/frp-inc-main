@@ -723,6 +723,7 @@ to{opacity:0;z-index:-3}
   text-shadow:var(--theme-ui-colors-textShadow);
   margin-top:0;
   overflow:visible;
+  text-transform: uppercase;
   }
 #menu li{color:#eee;font-size:clamp(.7rem,1.4vw,2.2rem);text-shadow:2px 2px 0 #000}
 #menu li .fullscreenButt{display:none;fill:var(--theme-ui-colors-text);filter:dropShadow(2px 2px 2px #000);}
