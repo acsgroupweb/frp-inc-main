@@ -95,7 +95,7 @@ export default function Seo({
 <link rel="apple-touch-icon" sizes="152x152" href="/siteimages/apple-splashapple-icon-152.png" />
 <link rel="apple-touch-icon" sizes="120x120" href="/siteimages/apple-splashapple-icon-120.png" />
 
-
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <link rel="apple-touch-startup-image"
     href="/siteimages/apple-splash-2048-2732.png"
