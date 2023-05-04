@@ -1,3 +1,12 @@
+* {font-family: "Russo One" !important;}
+
+body {
+  font-weight: normal;
+  background-color: rgba(0, 0, 0, .8);
+  color: rgb(121, 130, 145);
+  margin-top: 0px;
+  }
+
 @media (max-width: 799px) {
 
     [class*=BackCollection],
