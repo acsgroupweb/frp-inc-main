@@ -28,14 +28,14 @@ import { MdOutlineRectangle } from "react-icons/md"
 import Menu from "../components/menu"
 import userStyles from "../util/userStyles.json"
 import SignUp from "../components/newssign"
-
+import useNetlifyIdentity from '../components/useNetlifyIdentity';
 
 
 
 const Layout = ({ children }) => {
 
-  // const [loggedIn, setLoggedIn] = useState(false);
-  // useNetlifyIdentity(setLoggedIn);
+  const [loggedIn, setLoggedIn] = useState(false);
+  useNetlifyIdentity(setLoggedIn);
 
 
 const { companyname } = useSiteMetadata()
@@ -337,7 +337,11 @@ const fontUrl = "https://fonts.googleapis.com/css?family=" + font1.replace(/\s+/
 
 
 
-
+{loggedIn ? (
+<div style={{position:'absolute', right:'10px', top:'22px'}}><admin /></div>
+) : (
+  ""
+  )}
 
 </ul>
 
