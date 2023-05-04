@@ -2,7 +2,8 @@
 
 body {
   font-weight: normal;
-  background-color: rgba(0, 0, 0, .8);
+  /* background-color: rgba(0, 0, 0, .8); */
+  background-color: transparent;
   color: rgb(121, 130, 145);
   margin-top: 0px;
   }
