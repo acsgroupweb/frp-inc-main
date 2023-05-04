@@ -339,7 +339,7 @@ const fontUrl = "https://fonts.googleapis.com/css?family=" + font1.replace(/\s+/
 
 
 {loggedIn ? (
-<li> <Link aria-label="Admin" className="navbar-item" to="/login">admin</Link></li>
+<li> <Link aria-label="Admin" className="navbar-item" to="/login">Admin</Link></li>
 ) : (
   ""
   )}
