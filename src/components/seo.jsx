@@ -56,7 +56,7 @@ export default function Seo({
     >
       <html lang="en" />
       <meta name="description" content={seo.description} />
-      {/* <meta name="robots" content="noindex,nofollow" /> */}
+      <meta name="robots" content="noindex,nofollow" />
       <meta name="image" content={seo.image} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:url" content={seo.url} />
