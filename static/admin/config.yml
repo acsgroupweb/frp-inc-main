@@ -1,6 +1,6 @@
 backend:
-  # name: test-repo
-  name: git-gateway
+  name: test-repo
+  # name: git-gateway
   branch: live
   commit_messages:
     create: "Create {{collection}} “{{slug}}”"
@@ -21,33 +21,13 @@ show_preview_links: false
 
 collections:
   
-  - name: "team"
-    editor:
-      preview: false
-    label: "Team Members"
-    label_singular: "Team Member"
-    description: >
-      Add Team Members here
-    folder: "static/content/team"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "team"}
-      - {label: "Slug", name: "slug", widget: "string"}
-      - {label: "Team Member Name", name: "name", widget: "string"}
-      - {label: "Job Title", name: "jobTitle", widget: "string"}
-      - {label: "Credentials", name: "credentials", widget: "string"}
-      - {label: "Page Order", name: "order", widget: "number"}
-      - {label: "Team Image", name: "profilePicture", widget: "image", required: false,}
-      - {label: "Body", name: "body", widget: "markdown"}
-
   - name: "posts" # Used in routes, ie.: /admin/collections/:slug/edit
     editor:
       preview: false
-    label: "Site Posts" # Used in the UI
-    label_singular: "Site Post" # Used in the UI, ie: "New Post"
+    label: "Posts" # Used in the UI
+    label_singular: "Post" # Used in the UI, ie: "New Post"
     description: >
-      Create stuff for you website here.
+      Create stuff for your website here.
     folder: "static/content/posts"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{title}} — {{year}}/{{month}}/{{day}}"
@@ -106,7 +86,7 @@ collections:
       #   }
 
       - { label: "SEO Description", name: "description", widget: "text" }
-      - { label: "Make Comments Available?", name: "comments", widget: "boolean", default: "true", required: false }
+      # - { label: "Make Comments Available?", name: "comments", widget: "boolean", default: "true", required: false }
       - { label: "Make Post Shareable?", name: "shareable", widget: "boolean", default: "true", required: false }
       - { label: "Turn on Image Zoom", name: "showZoom", widget: "boolean", default: "true", required: false }
       - { label: "Turn on Page Level Nav", name: "showPageNav", widget: "boolean", default: "false", required: false }
@@ -291,8 +271,8 @@ collections:
           - { label: "Profile Title", name: "profTitle", widget: "string", default: "" }
           - { label: "Profile Text", name: "profText", widget: "string", default: "" }
 
-          - { label: "Skills Title", name: "skillsTitle", widget: "string", default: "" }
-          - { label: "Skills Text", name: "skillsText", widget: "string", default: "" }
+          # - { label: "Skills Title", name: "skillsTitle", widget: "string", default: "" }
+          # - { label: "Skills Text", name: "skillsText", widget: "string", default: "" }
           
 
 
@@ -350,12 +330,12 @@ collections:
               default: "/contact/",
             }
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Redirect to Thanks Page",
-              name: "redirect",
-              widget: "boolean",
-              default: "false",
-              required: false
-            }
+          # - { label: "Redirect to Thanks Page",
+          #     name: "redirect",
+          #     widget: "boolean",
+          #     default: "false",
+          #     required: false
+          #   }
 
           - { label: "Show Name Field",
               name: "contactname",
@@ -369,12 +349,12 @@ collections:
               default: "false",
               required: false
             }
-          - { label: "Show File Upload Field",
-              name: "contactupload",
-              widget: "boolean",
-              default: "false",
-              required: false
-            }
+          # - { label: "Show File Upload Field",
+          #     name: "contactupload",
+          #     widget: "boolean",
+          #     default: "false",
+          #     required: false
+          #   }
           - { label: "Upload Text",
               name: "uploadtext",
               widget: "string",
@@ -384,6 +364,25 @@ collections:
 
           - { label: "Body", name: "body", widget: "markdown", required: false }
 
+  - name: "team"
+    editor:
+      preview: false
+    label: "Team Members"
+    label_singular: "Team Member"
+    description: >
+      Add Team Members here
+    folder: "static/content/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "team"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Team Member Name", name: "name", widget: "string"}
+      - {label: "Job Title", name: "jobTitle", widget: "string"}
+      - {label: "Credentials", name: "credentials", widget: "string"}
+      - {label: "Page Order", name: "order", widget: "number"}
+      - {label: "Team Image", name: "profilePicture", widget: "image", required: false,}
+      - {label: "Body", name: "body", widget: "markdown"}
   
 
   - name: settings
@@ -462,10 +461,10 @@ collections:
                 label: Show Feature 
                 required: false
 
-              - widget: boolean
-                name: showInfo 
-                label: Show Info 
-                required: false
+              # - widget: boolean
+              #   name: showInfo 
+              #   label: Show Info 
+              #   required: false
 
               - widget: boolean
                 name: showPosts 
@@ -502,57 +501,57 @@ collections:
                 label: Show Cover Link
                 required: false
 
-              - widget: boolean
-                name: showResume
-                label: Show Resume
-                required: false
+              # - widget: boolean
+              #   name: showResume
+              #   label: Show Resume
+              #   required: false
 
-              - widget: boolean
-                name: showSkills
-                label: Show Skills
-                required: false
+              # - widget: boolean
+              #   name: showSkills
+              #   label: Show Skills
+              #   required: false
 
-              - widget: boolean
-                name: showModals
-                label: Show Modals
-                required: false
+              # - widget: boolean
+              #   name: showModals
+              #   label: Show Modals
+              #   required: false
 
-              - widget: string
-                name: font1
-                label: Google Font
-                required: false
+              # - widget: string
+              #   name: font1
+              #   label: Google Font
+              #   required: false
 
-              - widget: string
-                name: menu1
-                label: Menu Title 1
-                required: false
-                default: Info
+              # - widget: string
+              #   name: menu1
+              #   label: Menu Title 1
+              #   required: false
+              #   default: Info
 
-              - widget: string
-                name: menu2
-                label: Menu Title 
-                required: false
-                default: Posts
+              # - widget: string
+              #   name: menu2
+              #   label: Menu Title 
+              #   required: false
+              #   default: Posts
 
-              - widget: string
-                name: menu3 
-                label: Menu Title 3
-                required: false
-                default: Resume
+              # - widget: string
+              #   name: menu3 
+              #   label: Menu Title 3
+              #   required: false
+              #   default: Resume
 
-              - widget: string
-                name: menu4
-                label: Menu Title 4
-                required: false
-                default: Skills
+              # - widget: string
+              #   name: menu4
+              #   label: Menu Title 4
+              #   required: false
+              #   default: Skills
                 
               
 
-          - label: "Commenting – Go to: https://commentbox.io - sign up for free account "
-            name: comments
-            widget: string
-            hint: "Add your CommentBox ID – should look like xxxxxxxxxxxxxxxx-proj"
-            required: false
+          # - label: "Commenting – Go to: https://commentbox.io - sign up for free account "
+          #   name: comments
+          #   widget: string
+          #   hint: "Add your CommentBox ID – should look like xxxxxxxxxxxxxxxx-proj"
+          #   required: false
           - label: "Google Analytics"
             name: ga
             widget: string
