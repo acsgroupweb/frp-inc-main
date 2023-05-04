@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import Menu from "../util/menu.json";
+import Menu from "../../static/data/menu.json";
 
 const newMenu = Menu.menuItems.map((menu) => (
   <Link
