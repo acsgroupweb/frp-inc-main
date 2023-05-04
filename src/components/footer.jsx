@@ -170,9 +170,9 @@ const sIcons = Icons.socialIcons.map((icons, index) => {
 
 
 export default function Footer() {
-  const { siteUrl } = useSiteMetadata();
+  // const { siteUrl } = useSiteMetadata();
 
-  const speedIt = "https://googlechrome.github.io/lighthouse/viewer/?psiurl=" + siteUrl + "%2F&amp;strategy=mobile&amp;category=performance&amp;category=accessibility&amp;category=best-practices&amp;category=seo&amp;category=pwa&amp;utm_source=lh-chrome-ext"
+  // const speedIt = "https://googlechrome.github.io/lighthouse/viewer/?psiurl=" + siteUrl + "%2F&amp;strategy=mobile&amp;category=performance&amp;category=accessibility&amp;category=best-practices&amp;category=seo&amp;category=pwa&amp;utm_source=lh-chrome-ext"
 
 
 

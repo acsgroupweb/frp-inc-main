@@ -338,7 +338,7 @@ const fontUrl = "https://fonts.googleapis.com/css?family=" + font1.replace(/\s+/
 
 
 {loggedIn ? (
-<div style={{position:'absolute', right:'10px', top:'22px'}}><admin /></div>
+<div style={{position:'absolute', right:'10px', top:'22px'}}>admin</div>
 ) : (
   ""
   )}
